@@ -1,5 +1,4 @@
 import config from '../config';
-import { start } from 'repl';
 export class Lotter {
 
   constructor() {
@@ -12,7 +11,7 @@ export class Lotter {
       sports: {}
     };
   }
-
+  
   getSelected(state) {
     const obj = config[state];
     
@@ -77,7 +76,7 @@ export class Lotter {
   }
  
   getSportsResult() {
-
+    
   }
   getWelfareResult() {
 

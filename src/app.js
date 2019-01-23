@@ -1,10 +1,20 @@
 
 import config from './config';
+import moment from 'moment';
 import { Wechaty } from 'wechaty';
 import { lotter } from './services';
+
 const bot = new Wechaty();
 
-// 机器人实例 
+const reply = (msg) => {
+  const { messageDict } = config;
+  messageDict.forEach((v) => {
+    console.log(msg.text() === v.code);
+    if (msg.text() === v.code) {
+      msg.to().say(`${v.nickName}：\n ${lotter.getSelected(v.name)}`)
+    }
+  })
+};
 
 bot.on('scan', qrcode => {
   require('qrcode-terminal').generate(qrcode, { small: true })
@@ -35,13 +45,6 @@ bot.start()
     console.log('starter Bot Started！');
   });
 
-const reply = (msg) => {
-  const { messageDict } = config;
-  messageDict.forEach((v) => {
-    console.log(msg.text() === v.code);
-    if (msg.text() === v.code) {
-      msg.to().say(`${v.nickName}：\n ${lotter.getSelected(v.name)}`)
-    }
-  })
-};
+
+
 
